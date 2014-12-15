@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+<h1>{{ article.title }}</h1>
+    <span> <b>{{ article.author }}</b> 在 <i> {{ article.pub_date }} </i> 提交 </span>
+        <h2>{{ article.body }}</h2>
+        {% if article.image %}
+        <img class="img-responsive" src="/media/{{ article.image }}" />
+        {% endif %}
+<br />
+<legend>最新评论 | <a href="/article/add_comment/{{ article_id }}" >添加评论</a></legend>
+    {% for comments in article.comment_set.all %}
+        {% if comments.approved %}
+         <div class="media">
+            <a class="media-left media-small" href="#">
+            <img src="{% static "face.jpg" %}" alt="..." /></a>
+                <div class="media-body">
+                <h4 class="media-heading"><b>{{ comments.name }}</b></h4>
+                {{ comments.body }}
+            </div>
+        </div>
+
+        {% endif %}
+
+    {% endfor %}
+{% endblock %}

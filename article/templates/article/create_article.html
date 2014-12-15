@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form role="form" action="/article/create/" method="post" enctype="multipart/form-data" data-ajax="false" >
+    {% csrf_token %}
+    <div class="form-group">
+    {{ form }}
+    </div>
+    <div class="form-group">
+    <input class='form-control' type="submit" name="提交" value="创建主题">
+    </div>
+    </form>
+
+
+{% endblock %}

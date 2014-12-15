@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>欢迎您来到这里！</h1>
+      </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% for article in articles %}
+        <div class="col-md-4">
+        <h2><a href= "{% url 'detail' article.id %}"> {{ article.title | slice:"20"}} </a> </h2>
+        <span> <b>{{ article.author }}</b> 在 <i>{{ article.pub_date }}</i> 提交</span>
+        <p>{{ article.body | safe | slice:"64" }} </p>
+        </div>
+    {% endfor %}
+{% endblock %}
