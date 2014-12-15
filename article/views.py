@@ -5,10 +5,12 @@ from forms import ArticleForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.utils import timezone
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
 
+@cache_page(60 * 15)
 def index(request):
     """ 首页: 显示文章列表
     """
@@ -16,7 +18,7 @@ def index(request):
     return render(request, 'article/index.html', locals())
 
 
-
+@cache_page(60 * 15)
 def detail(request, article_id=1):
     """ 内容页: 显示详细文章内容和评论
     """
