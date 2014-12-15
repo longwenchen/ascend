@@ -16,7 +16,9 @@ class Article(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='提交时间')
     likes = models.IntegerField(verbose_name='赞', default=0)
     image = models.ImageField(verbose_name='图片', upload_to='uploads', blank=True)
-    author = models.CharField(verbose_name='名字', max_length=10)
+    author = models.CharField(verbose_name='名字', max_length=25)
+    input_formats = models.BooleanField(verbose_name='富文本格式', default=False)
+    content_type = models.CharField(verbose_name='内容类型', max_length=10, default='topic')
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
@@ -33,7 +35,7 @@ class Article(models.Model):
 class Comment(models.Model):
     """ 评论
     """
-    name = models.CharField(max_length=50, verbose_name='名字')
+    name = models.CharField(max_length=25, verbose_name='名字')
     body = models.TextField(verbose_name='内容')
     pub_date = models.DateTimeField()
     article = models.ForeignKey(Article)

@@ -10,21 +10,33 @@ from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def index(request):
     """ 首页: 显示文章列表
     """
-    articles = Article.objects.all()
+    articles = Article.objects.filter(content_type='topic')
     return render(request, 'article/index.html', locals())
 
 
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
+def hlp(request):
+    """ 帮助: 显示文章列表
+    """
+    articles = Article.objects.filter(content_type='hlp')
+    return render(request, 'article/index.html', locals())
+
+
+# @cache_page(60 * 15)
 def detail(request, article_id=1):
     """ 内容页: 显示详细文章内容和评论
     """
     article = Article.objects.get(id=article_id)
 
     return render(request, 'article/detail.html', locals())
+
+# @cache_page(60 * 15)
+def about(request):
+    return render(request, 'about.html')
 
 
 def create(request):

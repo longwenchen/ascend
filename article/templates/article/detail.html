@@ -4,7 +4,11 @@
 
 <h1>{{ article.title }}</h1>
     <span> <b>{{ article.author }}</b> 在 <i> {{ article.pub_date }} </i> 提交 </span>
-        <h2>{{ article.body }}</h2>
+        <h2>{% if article.input_formats %}
+            {{ article.body | safe }}
+            {% else %} {{ article.body }}
+            {% endif %}
+        </h2>
         {% if article.image %}
         <img class="img-responsive" src="/media/{{ article.image }}" />
         {% endif %}

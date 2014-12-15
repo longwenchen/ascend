@@ -13,7 +13,11 @@
         <div class="col-md-4">
         <h2><a href= "{% url 'detail' article.id %}"> {{ article.title | slice:"20"}} </a> </h2>
         <span> <b>{{ article.author }}</b> 在 <i>{{ article.pub_date }}</i> 提交</span>
-        <p>{{ article.body | safe | slice:"64" }} </p>
+        <p> {% if article.input_formats %}
+            {{ article.body | safe | slice:"64" }}
+            {% else %} {{ article.body | slice:"64" }}
+            {% endif %}
+        </p>
         </div>
     {% endfor %}
 {% endblock %}
