@@ -1,5 +1,6 @@
 ﻿建立数据库和建立用户：有两种方法
 第一种：
+#### need to review 未解决之前请使用第二种方法
 root@debian:~# su - postgres
 postgres@debian:~$ psql
 psql (9.1.12)
@@ -24,7 +25,7 @@ createdb --encoding=UTF8 -T template0 --owner=drupaluser drupaldb
 完成以上的话，就可以在 drupal 的安装选项里，填写数据库用户名和密码进行安装了。
 
 修改数据库用户密码：
-alter user "user" with password "newpassword";
+alter user "user" with password 'newpassword';
 
 注：如果 sql 语句中使用了 postgresql 的关键词，可以使用 双引号进行转义 "" 。
 
