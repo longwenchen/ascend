@@ -3,21 +3,25 @@
 {% block jumbotron %}
     <div class="jumbotron">
       <div class="container">
-        <h1>欢迎您来到这里！</h1>
+        <h1>{{ text }}</h1>
       </div>
     </div>
 {% endblock %}
 
 {% block content %}
-    {% for article in articles %}
+    {% if articles %}
+        {% for article in articles %}
         <div class="col-md-4">
         <h2><a href= "{% url 'detail' article.id %}"> {{ article.title | slice:"20"}} </a> </h2>
-        <span> <b>{{ article.author }}</b> 在 <i>{{ article.pub_date }}</i> 提交</span>
+        <span> <b>{{ article.author }}</b> 在 <em>{{ article.pub_date }}</em> 提交</span>
         <p> {% if article.input_formats %}
             {{ article.body | safe | slice:"64" }}
             {% else %} {{ article.body | slice:"64" }}
             {% endif %}
         </p>
         </div>
-    {% endfor %}
+        {% endfor %}
+        {% else %}
+        <p>目前还没有内容</p>
+    {% endif %}
 {% endblock %}

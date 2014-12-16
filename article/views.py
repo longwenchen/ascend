@@ -14,6 +14,7 @@ from django.views.decorators.cache import cache_page
 def index(request):
     """ 首页: 显示文章列表
     """
+    text = '欢迎您来到这里！'
     articles = Article.objects.filter(content_type='topic')
     return render(request, 'article/index.html', locals())
 
@@ -22,6 +23,7 @@ def index(request):
 def hlp(request):
     """ 帮助: 显示文章列表
     """
+    text = '帮助中心！'
     articles = Article.objects.filter(content_type='hlp')
     return render(request, 'article/index.html', locals())
 
@@ -33,6 +35,7 @@ def detail(request, article_id=1):
     article = Article.objects.get(id=article_id)
 
     return render(request, 'article/detail.html', locals())
+
 
 # @cache_page(60 * 15)
 def about(request):
