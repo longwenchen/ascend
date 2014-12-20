@@ -39,7 +39,7 @@ def detail(request, article_id=1):
 
 # @cache_page(60 * 15)
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html', locals())
 
 
 def create(request):
@@ -79,8 +79,3 @@ def add_comment(request, article_id):
     args['form'] = f
 
     return render_to_response('article/add_comment.html', args)
-
-
-
-
-

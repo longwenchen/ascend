@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^about/$', 'article.views.about'),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^', include('article.urls')),
 )
 

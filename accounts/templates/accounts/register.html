@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post" action="/accounts/register/" >
+    {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="注册" class="form-control  btn-primary" />
+    </form>
+{% endblock %}
