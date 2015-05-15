@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from article.models import Article, Comment
+from django_markdown.admin import MarkdownModelAdmin
 # Register your models here.
 
 
@@ -10,9 +11,10 @@ from article.models import Article, Comment
 #
 #
 # class ArticleAdmin(admin.ModelAdmin):
-#     fieldsets = [(None, {'fields': ['title']}), ]
-#     inlines = [CommentInline]
+#     formfield_overrides = {MarkdownField: {'widget': AdminMarkdownWidget}}
+    # fieldsets = [(None, {'fields': ['title']}), ]
+    # inlines = [CommentInline]
 
 
-admin.site.register(Article)
+admin.site.register(Article, MarkdownModelAdmin)
 admin.site.register(Comment)

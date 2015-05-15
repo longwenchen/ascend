@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django_markdown.models import MarkdownField
 from django.utils import timezone
 import datetime
 
@@ -12,7 +13,7 @@ class Article(models.Model):
     """ 文章
     """
     title = models.CharField(max_length=50, verbose_name='标题')
-    body = models.TextField(verbose_name='内容')
+    body = MarkdownField(verbose_name='内容')
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='提交时间')
     likes = models.IntegerField(verbose_name='赞', default=0)
     image = models.ImageField(verbose_name='图片', upload_to='uploads', blank=True)

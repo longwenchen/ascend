@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'article',
     'accounts',
+    'django_markdown',
 )
 
 MIDDLEWARE_CLASSES = (

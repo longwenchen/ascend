@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load django_markdown %}
 {% block content %}
 
 <h1>{{ article.title }}</h1>
     <span> <strong>{{ article.author }}</strong> 在 <em> {{ article.pub_date }} </em> 提交 </span>
         <h3>{% if article.input_formats %}
-            {{ article.body | safe }}
+            {{ article.body | markdown }}
             {% else %} {{ article.body }}
             {% endif %}
         </h3>
